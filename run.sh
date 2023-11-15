@@ -7,12 +7,12 @@ if [ "$delete" = "true" ]
 then
   echo Deleting! Sleeping for 10 seconds as a safety measure.
   sleep 10s
+  echo Deleting all .idx files
+  find "$directory" -type f -name "*.idx" -delete
 else
   echo Dry run, not performing deletions
+  find "$directory" -type f -name "*.idx"
 fi
-
-echo Deleting all .idx files
-find "$directory" -type f -name "*.idx"
 
 # Delete all old files (this is purposefully not using simple find -mtime logic, because that is very slow with rclone mounted drive)
 delete() {
@@ -28,7 +28,7 @@ delete() {
     echo Processing day "$i" - "$date"
     if [ "$delete" = "true" ]
     then
-      find "$directory" -type f -path "*${date}*/*.${extension}"
+      find "$directory" -type f -path "*${date}*/*.${extension}" -delete
     else
       find "$directory" -type f -path "*${date}*/*.${extension}"
     fi
