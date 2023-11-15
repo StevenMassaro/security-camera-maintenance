@@ -1,6 +1,15 @@
 mp4DaysToRetain=${mp4DaysToRetain:-30}
 jpgDaysToRetain=${jpgDaysToRetain:-100}
 directory=${directory:-.}
+delete=${delete:-false}
+
+if [ "$delete" = "true" ]
+then
+  echo Deleting! Sleeping for 10 seconds as a safety measure.
+  sleep 10s
+else
+  echo Dry run, not performing deletions
+fi
 
 echo Deleting all .idx files
 find "$directory" -type f -name "*.idx"
@@ -17,7 +26,12 @@ delete() {
   do
     date=$(date --date="$i"' days ago' +"%Y-%m-%d")
     echo Processing day "$i" - "$date"
-    find "$directory" -type f -path "*${date}*/*.${extension}"
+    if [ "$delete" = "true" ]
+    then
+      find "$directory" -type f -path "*${date}*/*.${extension}"
+    else
+      find "$directory" -type f -path "*${date}*/*.${extension}"
+    fi
   done
 }
 
