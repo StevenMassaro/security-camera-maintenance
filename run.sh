@@ -37,3 +37,12 @@ delete() {
 
 delete "mp4" "$mp4DaysToRetain"
 delete "jpg" "$jpgDaysToRetain"
+
+if [ "$delete" = "true" ]
+then
+  echo Deleting empty directories
+  find "$directory" -type d -empty -print -delete
+else
+  echo Dry run, not performing deletions
+  find "$directory" -type d -empty
+fi
