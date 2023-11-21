@@ -8,7 +8,7 @@ then
   echo Deleting! Sleeping for 10 seconds as a safety measure.
   sleep 10s
   echo Deleting all .idx files
-  find "$directory" -type f -name "*.idx" -delete
+  find "$directory" -type f -name "*.idx" -print -delete
 else
   echo Dry run, not performing deletions
   find "$directory" -type f -name "*.idx"
