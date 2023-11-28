@@ -9,9 +9,12 @@ then
   sleep 10s
   echo Deleting all .idx files
   find "$directory" -type f -name "*.idx" -print -delete
+  echo Deleting all .idx_ files
+  find "$directory" -type f -name "*.idx_" -print -delete
 else
   echo Dry run, not performing deletions
   find "$directory" -type f -name "*.idx"
+  find "$directory" -type f -name "*.idx_"
 fi
 
 # Delete all old files (this is purposefully not using simple find -mtime logic, because that is very slow with rclone mounted drive)
@@ -36,6 +39,7 @@ delete() {
 }
 
 delete "mp4" "$mp4DaysToRetain"
+delete "mp4_" "$mp4DaysToRetain"
 delete "jpg" "$jpgDaysToRetain"
 
 if [ "$delete" = "true" ]
