@@ -1,4 +1,4 @@
-FROM stevenmassaro/recurring-task-base:3.19
+FROM stevenmassaro/recurring-task-base:v1.3.19
 
 COPY run.sh run.sh
 ENV COMMAND="./run.sh && curl -fsS -m 10 --retry 5 -o /dev/null \"\$HEALTHCHECKS_URL\""
