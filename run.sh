@@ -41,6 +41,7 @@ delete() {
 delete "mp4" "$mp4DaysToRetain"
 delete "mp4_" "$mp4DaysToRetain"
 delete "jpg" "$jpgDaysToRetain"
+delete "backup_" "1"
 
 if [ "$delete" = "true" ]
 then
