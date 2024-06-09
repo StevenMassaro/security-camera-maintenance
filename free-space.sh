@@ -27,6 +27,14 @@ delete_oldest_files() {
         echo "Would delete $OLDEST_FILE to free up space."
       fi
   done
+  if [ "$delete" = "true" ]
+  then
+    echo Deleting empty directories
+    find "$directory" -type d -empty -print -delete
+  else
+    echo Dry run, not performing deletions
+    find "$directory" -type d -empty
+  fi
 }
 
 # Get current disk usage
