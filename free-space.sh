@@ -14,7 +14,7 @@ get_disk_usage() {
 # Function to delete the oldest files
 delete_oldest_files() {
   while [ "$(get_disk_usage)" -ge "$THRESHOLD" ]; do
-    OLDEST_FILE=$(find "$directory" -type f -exec stat -c '%Y %n' {} + | sort -n | head -n 1 | awk '{print $2}')
+    OLDEST_FILE=$(find "$directory" -type f -printf '%T@ %p\n' | sort -n | head -n 1 | cut -d' ' -f2-)
     if [ -z "$OLDEST_FILE" ]; then
       echo "No more files to delete."
       break
