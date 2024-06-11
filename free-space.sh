@@ -2,7 +2,6 @@
 
 # Configuration
 THRESHOLD=${THRESHOLD:-80}
-MINIMUM_FREE_SPACE=${MINIMUM_FREE_SPACE:-20}
 directory=${directory:-.}
 delete=${delete:-false}
 
