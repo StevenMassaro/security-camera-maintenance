@@ -1,4 +1,4 @@
-FROM stevenmassaro/recurring-task-base:v3.3.21
+FROM stevenmassaro/recurring-task-base:v3.3.22
 
 COPY age.sh age.sh
 COPY free-space.sh free-space.sh
